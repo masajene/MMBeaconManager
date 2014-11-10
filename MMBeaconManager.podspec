@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
-  s.name         = 'iBeaconDemo'
+  s.name         = 'MMBeaconManager'
   s.version      = '1.0'
   s.license      =  :type => 'MIT'
   s.homepage     = '//'
   s.authors      =  'MasashiMizuno' => ''
-  s.summary      = ''
+  s.summary      = 'iBeacon Manager'
 
 # Source Info
   s.platform     =  :ios, '7'
