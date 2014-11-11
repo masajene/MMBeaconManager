@@ -459,6 +459,10 @@
             return @"Denied";
         case kCLAuthorizationStatusAuthorized:
             return @"Authorized";
+        case kCLAuthorizationStatusAuthorizedAlways:
+            return @"";
+        case kCLAuthorizationStatusAuthorizedWhenInUse:
+            return @"";
     }
     return @"";
 }

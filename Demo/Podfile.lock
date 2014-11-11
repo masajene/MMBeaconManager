@@ -1,0 +1,13 @@
+PODS:
+  - PulsingHalo (0.0.1)
+  - SVProgressHUD (1.0)
+
+DEPENDENCIES:
+  - PulsingHalo
+  - SVProgressHUD
+
+SPEC CHECKSUMS:
+  PulsingHalo: 6c5b7e18ca5c6c1319d5e2fd277f123ed74a1435
+  SVProgressHUD: 5e10939a296debf5fe5a5895eda9539b8b2114f1
+
+COCOAPODS: 0.32.1
