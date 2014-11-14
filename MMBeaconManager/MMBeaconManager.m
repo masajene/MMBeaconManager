@@ -41,6 +41,12 @@
         _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
         
         _locationManager = [[CLLocationManager alloc] init];
+        
+        // iOS8 After
+        if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1){
+            [_locationManager requestAlwaysAuthorization];
+        }
+        
         _locationManager.delegate = self;
         
         _regions = [[NSMutableArray alloc] init];
