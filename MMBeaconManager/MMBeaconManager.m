@@ -218,6 +218,11 @@
     }
     MMBeaconRegion *region = [[MMBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:UUIDString] identifier:identifier];
     [region clearFlags];
+    
+    if (!region) {
+        return nil;
+    }
+    
     [self.regions addObject:region];
     return region;
 }
@@ -229,6 +234,11 @@
     }
     MMBeaconRegion *region = [[MMBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:UUIDString] major:major identifier:identifier];
     [region clearFlags];
+    
+    if (!region) {
+        return nil;
+    }
+    
     [self.regions addObject:region];
     return region;
 }
@@ -240,6 +250,11 @@
     }
     MMBeaconRegion *region = [[MMBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:UUIDString] major:major minor:minor identifier:identifier];
     [region clearFlags];
+    
+    if (!region) {
+        return nil;
+    }
+    
     [self.regions addObject:region];
     return region;
 }
@@ -459,8 +474,6 @@
             return @"Denied";
         case kCLAuthorizationStatusAuthorized:
             return @"Authorized";
-        case kCLAuthorizationStatusAuthorizedAlways:
-            return @"";
         case kCLAuthorizationStatusAuthorizedWhenInUse:
             return @"";
     }
