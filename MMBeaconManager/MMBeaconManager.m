@@ -41,13 +41,17 @@
         _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
         
         _locationManager = [[CLLocationManager alloc] init];
+        _locationManager.delegate = self;
         
         // iOS8 After
-        if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1){
+        if ([_locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+            // iOS バージョンが 8 以上で、requestAlwaysAuthorization メソッドが
+            // 利用できる場合
+            
+            // 位置情報測位の許可を求めるメッセージを表示する
             [_locationManager requestAlwaysAuthorization];
+            //      [self.locationManager requestWhenInUseAuthorization];
         }
-        
-        _locationManager.delegate = self;
         
         _regions = [[NSMutableArray alloc] init];
         
@@ -59,6 +63,7 @@
     }
     return self;
 }
+
 
 #pragma mark applicationDidBecomActive local notification handler.
 // フォアグラウンドになった時に呼ばれる
