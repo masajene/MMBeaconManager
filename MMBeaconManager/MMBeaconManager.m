@@ -126,10 +126,22 @@
     [self updateMonitoringStatus];
 }
 
-- (void)startMonitoringRegion:(MMBeaconRegion *)region
-{
-    [_locationManager startMonitoringForRegion:region];
-    region.isMonitoring = YES;
+- (void)startMonitoringRegion:(MMBeaconRegion *)region {
+    UIApplication *application = [UIApplication sharedApplication];
+    
+    __block UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (bgTask != UIBackgroundTaskInvalid) {
+                [application endBackgroundTask:bgTask];
+                bgTask = UIBackgroundTaskInvalid;
+            }
+        });
+    }];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [_locationManager startMonitoringForRegion:region];
+        region.isMonitoring = YES;
+    });
 }
 
 - (void)startMonitoringRegionTry:(NSTimer *)timer
