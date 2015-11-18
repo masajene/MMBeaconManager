@@ -445,6 +445,7 @@
 - (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error
 {
     NSLog(@"monitoringDidFailForRegion:%@(%@)", region.identifier, error);
+    NSLog(@"NSLocationWhenInUseUsageDescription is me sure is set to Info.plist");
     
     if ([region isKindOfClass:[CLBeaconRegion class]]) {
         MMBeaconRegion *mRegion = [self lookupRegion:(CLBeaconRegion *)region];
@@ -495,7 +496,7 @@
             return @"Restricted";
         case kCLAuthorizationStatusDenied:
             return @"Denied";
-        case kCLAuthorizationStatusAuthorized:
+        case kCLAuthorizationStatusAuthorizedAlways:
             return @"Authorized";
         case kCLAuthorizationStatusAuthorizedWhenInUse:
             return @"";
